@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+:root {
+    --color_rosa: #FF518B;
+    --color_blanco: #fff;
+}
+
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+header {
+    border-radius: 1rem;
+    color: var(--color_blanco);
+    background: var(--color_rosa);
+}
+
+.logo {
+    display: block;
+    font-size: clamp(.2rem, 8vw, 3rem);
+    font-weight: 900;
+}
+
+.boton {
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.search-input {
+    flex: 1;
+    border-radius: 0;
+    border: 1px solid #ced4da;
+    padding: 1rem 0 1rem 1rem;
+    box-shadow: none !important;
+    border: 0;
+
+}
+
+.search-icon {
+    border: 1px solid #ced4da;
+    background: #FF518B;
+    border-left: 0;
+    border-radius: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.search-icon i {
+    font-size: 1.3rem;
+}
+
+
+
+.banner {
+    width: 95%;
+    overflow: hidden !important;
+    margin: 0 auto;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+
+.swiper-slide {
+    width: 80% !important;
+    height: 40vh !important;
+    background: var(--color_rosa);
+    border-radius: 2rem;
+    display: flex !important ;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box !important;
+}
+
+
+.swiper-slide-next,
+.swiper-slide-prev {
+    width: 20%;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+    opacity: 0.8;
+    /* Opacidad para slides adyacentes */
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.swiper-pagination {
+    bottom: 10px;
+}
+
+
+
+
+/* Sección de ¿por qué preferirnos? */
+.nosotros {
+    display: flex;
+    justify-content: space-evenly;
+}
+.nosotros article{
+    text-align: center;
+    border-radius: 1rem;
+
+}
+.nosotros article i {
+    font-size: 3rem;
+    color: var(--color_rosa);
+    margin-bottom: .5rem;
+}
+.nosotros article p {
+    width: 1rem;
+}
