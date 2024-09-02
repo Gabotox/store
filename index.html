@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="client/pages/index.html">Click aquí</a>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            background: #FF518B;
+            color: #fff;
+            padding: .7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: sans-serif;
+            transform-origin: 50% 5em;
+        }
+
+
+        a {
+            animation: wiggle 2s linear infinite;
+        }
+
+        /* Keyframes */
+        @keyframes wiggle {
+
+            0%,
+            7% {
+                transform: rotateZ(0);
+            }
+
+            15% {
+                transform: rotateZ(-5deg);
+            }
+
+            20% {
+                transform: rotateZ(5deg);
+            }
+
+            25% {
+                transform: rotateZ(-5deg);
+            }
+
+            30% {
+                transform: rotateZ(3deg);
+            }
+
+            35% {
+                transform: rotateZ(-4deg);
+            }
+
+            40%,
+            100% {
+                transform: rotateZ(0);
+            }
+        }
+    </style>
+
+</body>
+
+</html>
