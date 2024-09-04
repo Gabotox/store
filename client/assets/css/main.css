@@ -37,6 +37,10 @@ header {
     font-size: 2rem;
 }
 
+.buscador {
+    width: 85%;
+    margin: 0 auto;
+}
 
 .search-container {
     display: flex;
@@ -44,7 +48,7 @@ header {
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
-    background: #fff;
+    background: var(--color_blanco);;
 }
 
 .search-input {
@@ -77,12 +81,18 @@ header {
 }
 
 
+main {
+    overflow: hidden;
+}
+
+
 
 .banner {
     width: 95%;
     overflow: hidden !important;
     margin: 0 auto;
 }
+
 .swiper {
     width: 100%;
     height: 100%;
@@ -94,7 +104,7 @@ header {
     height: 40vh !important;
     background: var(--color_rosa);
     border-radius: 2rem;
-    display: flex !important ;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     box-sizing: border-box !important;
@@ -122,23 +132,53 @@ header {
 }
 
 
+.botones_productos {
+    margin-top: 1.5rem;
+}
+.botones_productos button{
+    background: none;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background: #d8d8d8;
+}
+.botones_productos button:first-child {
+    background: var(--color_rosa);
+    color: var(--color_blanco);
+}
+
+
 
 
 /* Sección de ¿por qué preferirnos? */
-.nosotros {
-    display: flex;
-    justify-content: space-evenly;
-}
-.nosotros article{
-    text-align: center;
-    border-radius: 1rem;
 
-}
-.nosotros article i {
-    font-size: 3rem;
-    color: var(--color_rosa);
-    margin-bottom: .5rem;
-}
-.nosotros article p {
-    width: 1rem;
+
+
+
+
+@media (max-width: 768px) {
+    header {
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
+
+    .buscador {
+        width: 90%;
+    }
+
+    .search-container {
+        border-radius: 10px;
+    }
+
+    .search-input {
+        padding: 1.5rem 0 1rem 1.5rem;
+    }
+
+    .banner {
+        height: 30vh;
+    }
+
+    .swiper-slide {
+        height: 18vh !important;
+    }
 }
