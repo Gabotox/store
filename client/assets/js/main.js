@@ -1,7 +1,7 @@
 var swiper = new Swiper("#swiper-banner", {
     slidesPerView: 'auto',
     centeredSlides: true,
-    spaceBetween: 30,
+    spaceBetween: 20,
     freeMode: false,
     pagination: {
         el: ".swiper-pagination",
@@ -24,4 +24,21 @@ var swiper = new Swiper("#swiper-cards", {
     slidesPerView: 'auto',
     spaceBetween: 30,
     freeMode: true,
-  });
+    autoplay: {
+        delay: 3000, // Tiempo en milisegundos entre transiciones (3 segundos)
+        disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
+    },
+    loop: true
+});
+
+var swiper = new Swiper("#swiper-cards-categoria", {
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    freeMode: true,
+    autoplay: {
+        delay: 5000, // Tiempo en milisegundos entre transiciones (3 segundos)
+        disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
+    },
+    loop: true
+});
+
