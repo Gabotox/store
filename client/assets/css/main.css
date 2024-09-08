@@ -139,17 +139,19 @@ main {
 
 /* Personalización de la paginación */
 #swiper-banner .swiper-pagination-bullet {
-    background-color: #888;
-    /* Color de los puntos de paginación inactivos */
+    background-color: #888; /* Color de los puntos inactivos */
+    border-radius: .4rem; /* Hace los bullets redondos */
+    margin: 0 0.3rem; /* Espacio entre bullets */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
 }
 
+/* Estilo para el bullet activo */
+/* Estilo para el bullet activo */
 #swiper-banner .swiper-pagination-bullet-active {
-    background-color: var(--color_rosa);
-    width: 1rem;
-    border-radius: .2rem;
-    /* Color del punto de paginación activo */
+    background-color: var(--color_rosa); /* Color del bullet activo */
+    width: 1.5rem;
+    transform: scale(1.2); /* Aumenta el tamaño del bullet activo */
 }
-
 
 
 
