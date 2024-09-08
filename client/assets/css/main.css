@@ -11,6 +11,10 @@
 :root {
     --color_rosa: #FF518B;
     --color_blanco: #fff;
+    --color_gris_claro: #EEEDEB;
+    --color_gris: #e6e6e6;
+    --color_dorado: #FFD700;
+    --color_negro: #000;
 }
 
 
@@ -48,7 +52,7 @@ header {
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
-    background: var(--color_blanco);;
+    background: var(--color_gris_claro);
 }
 
 .search-input {
@@ -58,6 +62,7 @@ header {
     padding: 1rem 0 1rem 1rem;
     box-shadow: none !important;
     border: 0;
+    background: var(--color_gris_claro);
 
 }
 
@@ -93,13 +98,13 @@ main {
     margin: 0 auto;
 }
 
-.swiper {
+#swiper-banner {
     width: 100%;
     height: 100%;
 }
 
 
-.swiper-slide {
+#swiper-banner .swiper-slide {
     width: 80% !important;
     height: 40vh !important;
     background: var(--color_rosa);
@@ -110,39 +115,89 @@ main {
     box-sizing: border-box !important;
 }
 
-
-.swiper-slide-next,
-.swiper-slide-prev {
+#swiper-banner .swiper-slide-next,
+#swiper-banner .swiper-slide-prev {
     width: 20%;
 }
 
-.swiper-slide-prev,
-.swiper-slide-next {
+#swiper-banner .swiper-slide-prev,
+#swiper-banner .swiper-slide-next {
     opacity: 0.8;
     /* Opacidad para slides adyacentes */
 }
 
-.swiper-wrapper {
+#swiper-banner .swiper-wrapper {
     display: flex;
     align-items: center;
 }
 
-.swiper-pagination {
+#swiper-banner .swiper-pagination {
     bottom: 10px;
 }
 
 
-.botones_productos {
-    margin-top: 1.5rem;
-}
-.botones_productos button{
+
+
+
+/* Slider de botones de categorías */
+#swiper-botones button {
+    width: max-content !important;
+    height: max-content !important;
     background: none;
-    padding: 1rem 1.5rem;
+    padding: .8rem 2rem !important;
     border: none;
-    border-radius: 5px;
-    background: #d8d8d8;
+    border-radius: 8px;
+    background: var(--color_gris);
 }
-.botones_productos button:first-child {
+
+#swiper-botones button:first-child {
+    background: var(--color_rosa);
+    color: var(--color_blanco);
+}
+
+
+/* Slider de tarjetas de productos TODOS */
+.card {
+    border: none; /* Quita el borde de la card */
+    box-shadow: none; /* Quita la sombra por defecto */
+    position: relative;
+    border-radius: 1rem;
+    background: var(--color_gris);
+    color: var(--color_negro);
+    width: 280px !important;
+    height: max-content;
+    overflow: hidden;
+}
+
+.card-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .5rem 2rem;
+    background: var(--color_rosa);
+    color: var(--color_blanco);
+    border-bottom-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.price-new {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.btn-add-to-cart {
     background: var(--color_rosa);
     color: var(--color_blanco);
 }
@@ -178,7 +233,7 @@ main {
         height: 30vh;
     }
 
-    .swiper-slide {
+    #swiper-banner .swiper-slide {
         height: 18vh !important;
     }
 }

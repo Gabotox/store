@@ -1,4 +1,4 @@
-var swiper = new Swiper(".mySwiper", {
+var swiper = new Swiper("#swiper-banner", {
     slidesPerView: 'auto',
     centeredSlides: true,
     spaceBetween: 30,
@@ -13,3 +13,15 @@ var swiper = new Swiper(".mySwiper", {
     },
     loop: true
 });
+
+var swiper = new Swiper("#swiper-botones", {
+    slidesPerView: 'auto',
+    spaceBetween: 15,
+    freeMode: true,
+});
+
+var swiper = new Swiper("#swiper-cards", {
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    freeMode: true,
+  });

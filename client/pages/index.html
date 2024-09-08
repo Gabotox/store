@@ -50,8 +50,8 @@
 
     <main class="my-2 my-md-5 container-lg main">
         <!-- Sección de Banners -->
-        <section class="banner">
-            <div class="swiper mySwiper">
+        <!-- <section class="banner">
+            <div class="swiper mySwiper" id="swiper-banner">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">Slide 1</div>
                     <div class="swiper-slide">Slide 2</div>
@@ -61,20 +61,130 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-        </section>
+        </section> -->
 
 
         <!-- Sección de productos -->
         <section class="my-5 produtos">
             <h2>Productos</h2>
 
-            <div class="botones_productos d-flex align-items-center gap-4">
-                <button>Lorem</button>
-                <button>Lorem</button>
-                <button>Lorem</button>
-                <button>Lorem</button>
-                <button>Lorem</button>
+            <!-- Botones de categorías  -->
+            <div class="swiper mySwiper mt-4" id="swiper-botones">
+                <div class="swiper-wrapper">
+                    <button class="swiper-slide">Lorem</button>
+                    <button class="swiper-slide">Lorem</button>
+                    <button class="swiper-slide">Lorem</button>
+                    <button class="swiper-slide">Lorem</button>
+                    <button class="swiper-slide">Lorem</button>
+                </div>
             </div>
+
+            <!-- Tarjeta de productos -->
+            <div class="container mt-5">
+                <div class="swiper mySwiper" id="swiper-cards">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide card pb-3">
+                            <div class="card-header">
+                                <span class="card-banner">Nuevo</span> <!-- O "Descuento" -->
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top"
+                                    alt="Imagen del Producto">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre del Producto</h5>
+                                <p class="card-text">Descripción breve del producto. Aquí puedes agregar detalles que
+                                    ayuden al
+                                    usuario a decidir.</p>
+                                <div class="d-flex align-items-center gap-4">
+                                    <span class="price-new">$19.99</span>
+                                    <span class="price-old">$29.99</span>
+                                </div>
+                                <a href="#" class="btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3"
+                                    style="width: max-content;"><i class="fa-solid fa-bag-shopping"></i> Agregar</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide card pb-3">
+                            <div class="card-header">
+                                <span class="card-banner">Nuevo</span> <!-- O "Descuento" -->
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top"
+                                    alt="Imagen del Producto">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre del Producto</h5>
+                                <p class="card-text">Descripción breve del producto. Aquí puedes agregar detalles que
+                                    ayuden al
+                                    usuario a decidir.</p>
+                                <div class="d-flex align-items-center gap-4">
+                                    <span class="price-new">$19.99</span>
+                                    <span class="price-old">$29.99</span>
+                                </div>
+                                <a href="#" class="btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3"
+                                    style="width: max-content;"><i class="fa-solid fa-bag-shopping"></i> Agregar</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide card pb-3">
+                            <div class="card-header">
+                                <span class="card-banner">Nuevo</span> <!-- O "Descuento" -->
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top"
+                                    alt="Imagen del Producto">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre del Producto</h5>
+                                <p class="card-text">Descripción breve del producto. Aquí puedes agregar detalles que
+                                    ayuden al
+                                    usuario a decidir.</p>
+                                <div class="d-flex align-items-center gap-4">
+                                    <span class="price-new">$19.99</span>
+                                    <span class="price-old">$29.99</span>
+                                </div>
+                                <a href="#" class="btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3"
+                                    style="width: max-content;"><i class="fa-solid fa-bag-shopping"></i> Agregar</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide card pb-3">
+                            <div class="card-header">
+                                <span class="card-banner">Nuevo</span> <!-- O "Descuento" -->
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top"
+                                    alt="Imagen del Producto">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre del Producto</h5>
+                                <p class="card-text">Descripción breve del producto. Aquí puedes agregar detalles que
+                                    ayuden al
+                                    usuario a decidir.</p>
+                                <div class="d-flex align-items-center gap-4">
+                                    <span class="price-new">$19.99</span>
+                                    <span class="price-old">$29.99</span>
+                                </div>
+                                <a href="#" class="btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3"
+                                    style="width: max-content;"><i class="fa-solid fa-bag-shopping"></i> Agregar</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide card pb-3">
+                            <div class="card-header">
+                                <span class="card-banner">Nuevo</span> <!-- O "Descuento" -->
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top"
+                                    alt="Imagen del Producto">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre del Producto</h5>
+                                <p class="card-text">Descripción breve del producto. Aquí puedes agregar detalles que
+                                    ayuden al
+                                    usuario a decidir.</p>
+                                <div class="d-flex align-items-center gap-4">
+                                    <span class="price-new">$19.99</span>
+                                    <span class="price-old">$29.99</span>
+                                </div>
+                                <a href="#" class="btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3"
+                                    style="width: max-content;"><i class="fa-solid fa-bag-shopping"></i> Agregar</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjetas por categorías -->
+             
         </section>
     </main>
 
