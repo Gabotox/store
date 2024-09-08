@@ -137,6 +137,21 @@ main {
 
 
 
+/* Personalización de la paginación */
+#swiper-banner .swiper-pagination-bullet {
+    background-color: #888;
+    /* Color de los puntos de paginación inactivos */
+}
+
+#swiper-banner .swiper-pagination-bullet-active {
+    background-color: var(--color_rosa);
+    width: 1rem;
+    border-radius: .2rem;
+    /* Color del punto de paginación activo */
+}
+
+
+
 
 
 /* Slider de botones de categorías */
@@ -227,23 +242,31 @@ main {
 .card-horizontal {
     display: flex !important;
     flex-direction: row;
-    border: none; /* Elimina el borde */
-    box-shadow: none; /* Elimina la sombra por defecto */
+    border: none;
+    /* Elimina el borde */
+    box-shadow: none;
+    /* Elimina la sombra por defecto */
     width: 450px !important;
 }
+
 .card-horizontal img {
-    width: 40%; /* Ajusta el ancho de la imagen */
-    object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+    width: 40%;
+    /* Ajusta el ancho de la imagen */
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste correctamente */
 }
+
 .card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .price {
     font-weight: bold;
     color: #d9534f;
 }
+
 .btn-buy {
     background-color: var(--color_rosa);
     color: var(--color_blanco);
