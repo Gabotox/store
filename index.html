@@ -9,9 +9,23 @@
 
 <body>
 
-    <a href="client/pages/index.html">Click aquí</a>
+    <a class="boton" href="#" id="miBoton">Click aquí</a>
+    <div class="caja" id="caja">
+        <div id="loader" class="loader"></div>
+        <h4>Ya te mamaste un <span>virus</span>, por marica</h4>
+    </div>
+
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
         body {
             height: 100vh;
             display: flex;
@@ -19,18 +33,13 @@
             align-items: center;
         }
 
-        a {
+        .boton {
             background: #FF518B;
             color: #fff;
             padding: .7rem 1.5rem;
             text-decoration: none;
             border-radius: 4px;
-            font-family: sans-serif;
             transform-origin: 50% 5em;
-        }
-
-
-        a {
             animation: wiggle 2s linear infinite;
         }
 
@@ -67,7 +76,64 @@
                 transform: rotateZ(0);
             }
         }
+
+        .caja {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 10rem;
+            gap: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* HTML: <div class="loader"></div> */
+        .loader {
+            width: 50px;
+            aspect-ratio: 1;
+            color: #FF518B;
+            --_c: no-repeat radial-gradient(farthest-side, currentColor 92%, #0000);
+            background:
+                var(--_c) 50% 0 /12px 12px,
+                var(--_c) 50% 100%/12px 12px,
+                var(--_c) 100% 50%/12px 12px,
+                var(--_c) 0 50%/12px 12px,
+                var(--_c) 50% 50%/12px 12px,
+                conic-gradient(from 90deg at 4px 4px, #0000 90deg, currentColor 0) -4px -4px/calc(50% + 2px) calc(50% + 2px);
+            animation: l8 1s infinite linear;
+        }
+
+        @keyframes l8 {
+            to {
+                transform: rotate(.5turn)
+            }
+        }
+
+        span {
+            color: #FF518B;
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let boton = document.getElementById("miBoton");
+            let loading = document.getElementById("caja");
+            loading.style.display = "none";
+
+            boton.addEventListener("click", function (event) {
+                event.preventDefault(); // Evita la redirección inmediata
+                loading.style.display = "flex"; // Muestra el mensaje de carga
+                boton.style.display = "none";
+
+                // Retraso antes de redirigir
+                setTimeout(function () {
+                    window.location.href = "client/pages/index.html"; // Redirige a la página deseada
+                }, 2000); // Ajusta el tiempo (en milisegundos) según tus necesidades
+            });
+        });
+    </script>
 
 </body>
 
