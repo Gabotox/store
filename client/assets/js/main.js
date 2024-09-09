@@ -11,7 +11,6 @@ var swiper = new Swiper("#swiper-banner", {
         delay: 3000, // Tiempo en milisegundos entre transiciones (3 segundos)
         disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
     },
-    loop: true
 });
 
 var swiper = new Swiper("#swiper-botones", {
@@ -27,8 +26,7 @@ var swiper = new Swiper("#swiper-cards", {
     autoplay: {
         delay: 3000, // Tiempo en milisegundos entre transiciones (3 segundos)
         disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
-    },
-    loop: true
+    }
 });
 
 var swiper = new Swiper("#swiper-cards-categoria", {
@@ -38,7 +36,6 @@ var swiper = new Swiper("#swiper-cards-categoria", {
     autoplay: {
         delay: 5000, // Tiempo en milisegundos entre transiciones (3 segundos)
         disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
-    },
-    loop: true
+    }
 });
 
