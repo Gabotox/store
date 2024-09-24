@@ -7,7 +7,7 @@ class usuariosControlador
     public function inicio()
     {
 
-        $usuarios = usuariosModelo::inicio("productos");
+        $usuarios = usuariosModelo::inicio("usuarios");
         
         $respuesta = [
             "Respuesta" => "Mostrar usuarios",
@@ -33,7 +33,7 @@ class usuariosControlador
 
         if ($datos["nombres"] == "" || $datos["apellidos"] == "" || $datos["celular"] == "") {
             $errores[] = [
-                "Mensaje" => "Debes completar todos los compos.",
+                "Mensaje" => "Debes completar todos los campos obligatorios.",
                 "Estado" => 400
             ];
         }

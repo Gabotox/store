@@ -84,9 +84,20 @@ if (count(array_filter($array_rutas)) == 1) {
                         break;
 
                     case 'POST':
+
+                        $nombre = miModelo::limpiar($_POST["nombre"] ?? "");
+                        $precio = miModelo::limpiar($_POST["precio"] ?? "");
+                        $categoria = miModelo::limpiar($_POST["categoria"] ?? "");
+
+                        $datos = [
+                            "nombre" => $nombre,
+                            "precio" => $precio,
+                            "categoria" => $categoria
+                        ];
+
                         // Llama al método para agregar un nuevo producto
                         $productos = new productosControlador();
-                        $productos->crear();
+                        $productos->registrar($datos);
                         break;
 
                     default:
@@ -140,26 +151,25 @@ if (count(array_filter($array_rutas)) == 1) {
 
         // Manejo de rutas con ID de producto
     } elseif ($array_rutas[2] == 'productos' && is_numeric($array_rutas[3])) {
-        $idProducto = $array_rutas[3]; // El ID del producto
 
         // Manejo de diferentes métodos HTTP para un producto específico
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 // Obtener y mostrar un producto por su ID
                 $producto = new productosControlador();
-                $producto->mostrar($idProducto);
+                $producto->mostrar(array_filter(array: $array_rutas)[3]);
                 break;
 
             case 'PUT':
                 // Editar un producto por su ID
                 $editar_producto = new productosControlador();
-                $editar_producto->editar($idProducto);
+                $editar_producto->actualizar(array_filter($array_rutas)[3], $datos);
                 break;
 
             case 'DELETE':
                 // Eliminar un producto por su ID
                 $eliminar_producto = new productosControlador();
-                $eliminar_producto->eliminar($idProducto);
+                $eliminar_producto->eliminar(array_filter($array_rutas)[3]);
                 break;
 
             default:
