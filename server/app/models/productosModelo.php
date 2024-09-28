@@ -15,20 +15,35 @@ class productosModelo {
     static public function registrar($tabla, $datos){
         $stmt = conexion::conectar()->prepare("INSERT INTO `productos`(
                 nombre_producto, 
+                descripcion_producto,
                 precio_producto, 
+                stock_producto,
+                imagen_producto,
                 categoria_producto, 
-                fecha_insercion_producto
+                fecha_insercion_producto,
+                estado_producto,
+                descuento_producto
                 ) VALUES (
                 :nombre,
+                :descripcion,
                 :precio,
+                :stock,
+                :imagen,
                 :categoria,
-                :fecha_insercion
+                :fecha_insercion,
+                :estado,
+                :descuento
                 )");
 
         $stmt->bindParam(":nombre", $datos["nombre"]);
+        $stmt->bindParam(":descripcion", $datos["descripcion"]);
         $stmt->bindParam(":precio", $datos["precio"]);
+        $stmt->bindParam(":stock", $datos["stock"]);
+        $stmt->bindParam(":imagen", $datos["imagen"]);
         $stmt->bindParam(":categoria", $datos["categoria"]);
         $stmt->bindParam(":fecha_insercion", $datos["fecha_insercion"]);
+        $stmt->bindParam(":estado", $datos["estado"]);
+        $stmt->bindParam(":descuento", $datos["descuento"]);
 
         if($stmt -> execute()) {
             return "ok";

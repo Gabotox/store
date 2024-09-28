@@ -46,16 +46,23 @@ if (count(array_filter($array_rutas)) == 1) {
                         // Verifica si la acción es un registro
 
                         // Limpiando las variables
+                        $cedula = miModelo::limpiar($_POST["cedula"] ?? '');
                         $nombres = miModelo::limpiar($_POST["nombres"] ?? '');
                         $apellidos = miModelo::limpiar($_POST["apellidos"] ?? '');
                         $celular = miModelo::limpiar($_POST["celular"] ?? '');
                         $correo = miModelo::limpiar($_POST["correo"] ?? '');
+                        $direccion = miModelo::limpiar($_POST["direccion"] ?? '');
+                        $rol = miModelo::limpiar($_POST["rol"] ?? '');
 
+                        // Crear el array con los datos a enviar
                         $datos = [
-                            'nombres' => $nombres,
-                            'apellidos' => $apellidos,
-                            'celular' => $celular,
-                            'correo' => $correo
+                            "cedula" => $cedula,
+                            "nombres" => $nombres,
+                            "apellidos" => $apellidos,
+                            "celular" => $celular,
+                            "correo" => $correo,
+                            "direccion" => $direccion,
+                            "rol" => $rol
                         ];
 
                         // Instancio la clase usuariosControlador
@@ -86,13 +93,21 @@ if (count(array_filter($array_rutas)) == 1) {
                     case 'POST':
 
                         $nombre = miModelo::limpiar($_POST["nombre"] ?? "");
+                        $descripcion = miModelo::limpiar($_POST["descripcion"] ?? "");
                         $precio = miModelo::limpiar($_POST["precio"] ?? "");
-                        $categoria = miModelo::limpiar($_POST["categoria"] ?? "");
+                        $stock = miModelo::limpiar($_POST["stock"] ?? "");
+                        $imagen = $_FILES['imagen'] ?? null;
+                        $descuento = miModelo::limpiar($_POST["descuento"] ?? "");
+                        $categoria = miModelo::limpiar($_POST["categoria"]);
 
                         $datos = [
                             "nombre" => $nombre,
+                            "descripcion" => $descripcion,
                             "precio" => $precio,
-                            "categoria" => $categoria
+                            "stock" => $stock,
+                            "categoria" => $categoria,
+                            "imagen" => $imagen,
+                            "descuento" => $descuento
                         ];
 
                         // Llama al método para agregar un nuevo producto
@@ -157,19 +172,19 @@ if (count(array_filter($array_rutas)) == 1) {
             case 'GET':
                 // Obtener y mostrar un producto por su ID
                 $producto = new productosControlador();
-                $producto->mostrar(array_filter(array: $array_rutas)[3]);
+                $producto->mostrar(id: array_filter(array: $array_rutas)[3]);
                 break;
 
             case 'PUT':
                 // Editar un producto por su ID
-                $editar_producto = new productosControlador();
-                $editar_producto->actualizar(array_filter($array_rutas)[3], $datos);
+                $editarProducto = new productosControlador();
+                $editarProducto->actualizar(array_filter($array_rutas)[3], $datos);
                 break;
 
             case 'DELETE':
                 // Eliminar un producto por su ID
-                $eliminar_producto = new productosControlador();
-                $eliminar_producto->eliminar(array_filter($array_rutas)[3]);
+                $eliminarProducto = new productosControlador();
+                $eliminarProducto->eliminar(array_filter($array_rutas)[3]);
                 break;
 
             default:
@@ -185,5 +200,4 @@ if (count(array_filter($array_rutas)) == 1) {
         echo json_encode($respuesta);
         http_response_code(404); // Código 404: No encontrado
     }
-
 }

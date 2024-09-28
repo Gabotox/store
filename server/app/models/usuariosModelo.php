@@ -17,32 +17,44 @@ class usuariosModelo
     {
 
         $stmt = conexion::conectar()->prepare("INSERT INTO $tabla (
+                `cedula_usuario`,
                 `nombres_usuario`, 
                 `apellidos_usuario`,
                 `id_cliente`,
                 `llave_secreta`,
+                `usuario_usuario`,
+                `contra_usuario`,
                 `celular_usuario`, 
                 `correo_usuario`, 
+                `direccion_usuario`,
                 `fecha_registro_usuario`, 
                 `rol_usuario`, 
                 `estado_usuario`
                 ) VALUES (
+                :cedula,
                 :nombres, 
                 :apellidos,
                 :id_cliente,
-                :llave_secreta, 
+                :llave_secreta,
+                :usuario, 
+                :contra, 
                 :celular, 
                 :correo, 
+                :direccion,
                 :fecha_registro, 
                 :rol, 
                 :estado)");
 
+        $stmt->bindParam(':cedula', $datos['cedula']);
         $stmt->bindParam(':nombres', $datos['nombres']);
         $stmt->bindParam(':apellidos', $datos['apellidos']);
         $stmt->bindParam(':id_cliente', $datos['id_cliente']);
         $stmt->bindParam(':llave_secreta', $datos['llave_secreta']);
+        $stmt->bindParam(':usuario', $datos['usuario_usuario']);
+        $stmt->bindParam(':contra', $datos['contra_usuario']);
         $stmt->bindParam(':celular', $datos['celular']);
         $stmt->bindParam(':correo', $datos['correo']);
+        $stmt->bindParam(':direccion', $datos['direccion']);
         $stmt->bindParam(':fecha_registro', $datos["fecha_registro"]);
         $stmt->bindParam(':rol', $datos["rol"]);
         $stmt->bindParam(':estado', $datos["estado"]);
