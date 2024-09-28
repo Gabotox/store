@@ -3,16 +3,19 @@
 require_once __DIR__ . "/../../config/conexion.php";
 
 
-class productosModelo {
+class productosModelo
+{
 
-    public static function inicio($tabla){
+    public static function inicio($tabla)
+    {
 
         $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla");
-        $stmt -> execute();
-        return $stmt -> fetchAll(PDO::FETCH_CLASS);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    static public function registrar($tabla, $datos){
+    static public function registrar($tabla, $datos)
+    {
         $stmt = conexion::conectar()->prepare("INSERT INTO `productos`(
                 nombre_producto, 
                 descripcion_producto,
@@ -45,8 +48,11 @@ class productosModelo {
         $stmt->bindParam(":estado", $datos["estado"]);
         $stmt->bindParam(":descuento", $datos["descuento"]);
 
-        if($stmt -> execute()) {
+        if ($stmt->execute()) {
             return "ok";
+        } else {
+            // Lanzar una excepción si hay un error
+            throw new Exception("Error al insertar el producto: " . implode(", ", $stmt->errorInfo()));
         }
     }
     static public function verificarProductoExistente($tabla, $nombre)
@@ -59,10 +65,11 @@ class productosModelo {
         return $stmt->rowCount() > 0;
     }
 
-    static public function mostrar($tabla, $id){
+    static public function mostrar($tabla, $id)
+    {
         $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_producto = :id");
-        $stmt -> bindParam(":id", $id);
-        $stmt -> execute();
-        return $stmt -> fetchAll(PDO::FETCH_CLASS);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 }
