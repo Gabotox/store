@@ -3,51 +3,75 @@
 class productosControlador
 {
 
-    public function inicio()
+    public function inicio($pagina)
     {
+        $errores = [];
 
+        // Obtener lista de usuarios para validar credenciales
         $usuarios = usuariosModelo::inicio("usuarios");
 
         if (isset($_SERVER["PHP_AUTH_USER"]) && isset($_SERVER["PHP_AUTH_PW"])) {
 
-            foreach ($usuarios as $key => $value) {
-
-                if (base64_encode($_SERVER["PHP_AUTH_USER"] . ":" . $_SERVER["PHP_AUTH_PW"]) == base64_encode($value["id_cliente"] . ":" . $value["llave_secreta"]) && $value["rol_usuario"] == 1) {
-
-                    $productos = productosModelo::inicio("productos");
-
-                    $json = array(
-                        "Todal de registros" => count($productos),
-                        "Estado" => 200,
-                        "Respuesta" => $productos
-                    );
-
-                    echo json_encode($json, true);
-
-                    return;
-                } else {
-                    $json = array(
-                        "Estado" => 400,
-                        "Respuesta" => "Credenciales inválidas"
-                    );
-
-                    echo json_encode($json, true);
-
-                    return;
+            $usuarioValido = false;
+            foreach ($usuarios as $valueUsuario) {
+                if (
+                    $_SERVER["PHP_AUTH_USER"] . ":" . $_SERVER["PHP_AUTH_PW"] == $valueUsuario["id_cliente"] . ":" . $valueUsuario["llave_secreta"] &&
+                    $valueUsuario["rol_usuario"] == 1 && $valueUsuario["estado_usuario"] == "activo"
+                ) {
+                    $usuarioValido = true;
+                    break;
                 }
             }
+
+            if ($usuarioValido) {
+                try {
+                    if ($pagina != null) {
+
+                        $cantidad = 10;
+                        $desde = ($pagina - 1) * 10;
+
+                        $productos = productosModelo::inicio("productos", $cantidad, $desde);
+                    } else {
+                        $productos = productosModelo::inicio("productos", null, null);
+                    }
+                    // Intentar obtener los productos
+
+                    // Responder con los productos
+                    $respuesta = [
+                        "Total de registros" => count($productos),
+                        "Estado" => 200,
+                        "Respuesta" => $productos
+                    ];
+                    http_response_code(200);
+                    echo json_encode($respuesta);
+                } catch (Exception $e) {
+                    // Capturar cualquier error al obtener los productos
+                    $errores[] = [
+                        "Mensaje" => "Hubo un problema al obtener los productos.",
+                        "Detalle" => $e->getMessage(),
+                        "Estado" => 500
+                    ];
+                    http_response_code(500);
+                    echo json_encode(["Respuesta" => $errores]);
+                }
+            } else {
+                // Responder con credenciales inválidas
+                http_response_code(401);
+                echo json_encode([
+                    "Estado" => 401,
+                    "Respuesta" => "Credenciales inválidas"
+                ]);
+            }
         } else {
-            $json = array(
-                "Todal de registros" => "Para tí no hay, pa.",
-                "Estado" => 404,
-                "Respuesta" => "Para ti no hay productos"
-            );
-
-            echo json_encode($json, true);
-
-            return;
+            // Responder si no se proporcionaron credenciales
+            http_response_code(401);
+            echo json_encode([
+                "Estado" => 401,
+                "Respuesta" => "No se proporcionaron credenciales"
+            ]);
         }
     }
+
 
     public function registrar($datos)
     {
@@ -359,6 +383,19 @@ class productosControlador
             }
 
 
+            // Verificar si el producto existe
+            $productoExistente = productosModelo::mostrar("productos", $id);
+
+            if (!$productoExistente) {
+                $errores[] = [
+                    "Mensaje" => "El producto con el ID proporcionado no existe.",
+                    "Estado" => 404
+                ];
+                http_response_code(404);
+                echo json_encode(["Respuesta" => $errores]);
+                return;
+            }
+
             // Validaciones de datos
             if (empty($datos["nombre"]) || empty($datos["precio"]) || empty($datos["categoria"])) {
                 $errores[] = [
@@ -571,6 +608,19 @@ class productosControlador
                         ]
                     ]
                 ]);
+                return;
+            }
+
+            // Verificar si el producto existe
+            $productoExistente = productosModelo::mostrar("productos", $id);
+
+            if (!$productoExistente) {
+                $errores[] = [
+                    "Mensaje" => "El producto con el ID proporcionado no existe.",
+                    "Estado" => 404
+                ];
+                http_response_code(404);
+                echo json_encode(["Respuesta" => $errores]);
                 return;
             }
 

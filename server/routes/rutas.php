@@ -1,9 +1,17 @@
 <?php
 
 // Separa la URL en partes usando "/" como delimitador
-$array_rutas = explode("/", $_SERVER['REQUEST_URI']);
+$array_rutas = explode("/", trim($_SERVER['REQUEST_URI'], characters: '/'));
+
+// Verifica si la paginación está presente
+if (isset($_GET["pagina"]) && is_numeric($_GET["pagina"])) {
+    $productos = new productosControlador();
+    $productos->inicio($_GET["pagina"]);
+    return; // Detiene la ejecución si se está utilizando la paginación
+}
 
 $errores = [];
+
 // Si solo hay un segmento en la URL, retorna un mensaje de error
 if (count(array_filter($array_rutas)) == 1) {
     $respuesta = [
@@ -14,13 +22,10 @@ if (count(array_filter($array_rutas)) == 1) {
     http_response_code(404); // Código 404: No encontrado
     return;
 } else {
-
     // Verificar si hay dos partes en la ruta y manejar cada recurso
     if (count(array_filter($array_rutas)) == 2) {
-
         // Obtener la segunda parte de la ruta, que representa la acción
-        $accion = $array_rutas[2] ?? null;
-        $subAccion = $array_rutas[3] ?? null;
+        $accion = $array_rutas[1] ?? null; // Cambiado de [2] a [1]
 
         switch ($accion) {
             case 'usuarios':
@@ -43,8 +48,6 @@ if (count(array_filter($array_rutas)) == 1) {
             case 'registro':
                 switch ($_SERVER['REQUEST_METHOD']) {
                     case 'POST':
-                        // Verifica si la acción es un registro
-
                         // Limpiando las variables
                         $cedula = miModelo::limpiar($_POST["cedula"] ?? '');
                         $nombres = miModelo::limpiar($_POST["nombres"] ?? '');
@@ -67,7 +70,6 @@ if (count(array_filter($array_rutas)) == 1) {
 
                         // Instancio la clase usuariosControlador
                         $usuarios = new usuariosControlador();
-
                         // Le envío los datos por parámetros al método registrar
                         $usuarios->registrar($datos);
                         break;
@@ -87,18 +89,17 @@ if (count(array_filter($array_rutas)) == 1) {
                     case 'GET':
                         // Llama al método para listar todos los productos
                         $productos = new productosControlador();
-                        $productos->inicio();
+                        $productos->inicio(null);
                         break;
 
                     case 'POST':
-
                         $nombre = miModelo::limpiar($_POST["nombre"] ?? "");
                         $descripcion = miModelo::limpiar($_POST["descripcion"] ?? "");
                         $precio = miModelo::limpiar($_POST["precio"] ?? "");
                         $stock = miModelo::limpiar($_POST["stock"] ?? "");
                         $imagen = $_FILES['imagen'] ?? null;
                         $descuento = miModelo::limpiar($_POST["descuento"] ?? "");
-                        $categoria = miModelo::limpiar($_POST["categoria"]);
+                        $categoria = miModelo::limpiar($_POST["categoria"] ?? "");
 
                         $datos = [
                             "nombre" => $nombre,
@@ -148,7 +149,7 @@ if (count(array_filter($array_rutas)) == 1) {
 
             case 'admin':
                 // Manejo de las peticiones para administración
-                $subAccion = $array_rutas[3] ?? null; // Obtener subacción si existe
+                $subAccion = $array_rutas[2] ?? null; // Obtener subacción si existe
                 if ($subAccion === 'login') {
                     // Manejar el inicio de sesión del administrador (por implementar)
                 } elseif ($subAccion === 'logout') {
@@ -163,23 +164,20 @@ if (count(array_filter($array_rutas)) == 1) {
                 http_response_code(404); // Código 404: No encontrado
                 break;
         }
-
-        // Manejo de rutas con ID de producto
-    } elseif ($array_rutas[2] == 'productos' && is_numeric($array_rutas[3])) {
-
+    } elseif (count(array_filter($array_rutas)) == 3 && $array_rutas[1] == 'productos' && is_numeric($array_rutas[2])) {
         // Manejo de diferentes métodos HTTP para un producto específico
+        $productoId = array_filter($array_rutas)[2];
+
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 // Obtener y mostrar un producto por su ID
                 $producto = new productosControlador();
-                $producto->mostrar(id: array_filter(array: $array_rutas)[3]);
+                $producto->mostrar($productoId);
                 break;
 
             case 'PUT':
                 // Editar un producto por su ID
-
                 parse_str(file_get_contents("php://input"), $datos);
-
                 // Asegúrate de limpiar los datos que vinieron en el cuerpo
                 $nombre = miModelo::limpiar($datos["nombre"] ?? "");
                 $precio = miModelo::limpiar($datos["precio"] ?? "");
@@ -192,13 +190,13 @@ if (count(array_filter($array_rutas)) == 1) {
                 ];
 
                 $editarProducto = new productosControlador();
-                $editarProducto->actualizar(array_filter($array_rutas)[3], $datos);
+                $editarProducto->actualizar($productoId, $datos);
                 break;
 
             case 'DELETE':
                 // Eliminar un producto por su ID
                 $eliminarProducto = new productosControlador();
-                $eliminarProducto->eliminar(array_filter($array_rutas)[3]);
+                $eliminarProducto->eliminar($productoId);
                 break;
 
             default:
