@@ -177,6 +177,20 @@ if (count(array_filter($array_rutas)) == 1) {
 
             case 'PUT':
                 // Editar un producto por su ID
+
+                parse_str(file_get_contents("php://input"), $datos);
+
+                // Asegúrate de limpiar los datos que vinieron en el cuerpo
+                $nombre = miModelo::limpiar($datos["nombre"] ?? "");
+                $precio = miModelo::limpiar($datos["precio"] ?? "");
+                $categoria = miModelo::limpiar($datos["categoria"] ?? "");
+
+                $datos = [
+                    "nombre" => $nombre,
+                    "precio" => $precio,
+                    "categoria" => $categoria,
+                ];
+
                 $editarProducto = new productosControlador();
                 $editarProducto->actualizar(array_filter($array_rutas)[3], $datos);
                 break;
