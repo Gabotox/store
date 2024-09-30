@@ -8,7 +8,7 @@ class productosModelo
 
     public static function inicio($tabla, $cantidad, $desde)
     {
-        if($cantidad != null){
+        if ($cantidad != null) {
             $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla LIMIT $desde, $cantidad");
         } else {
             $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla");
@@ -68,8 +68,6 @@ class productosModelo
         }
     }
 
-
-
     static public function verificarProductoExistente($tabla, $nombre)
     {
         $stmt = conexion::conectar()->prepare("SELECT nombre_producto FROM $tabla WHERE nombre_producto = :nombre");
@@ -79,8 +77,6 @@ class productosModelo
         // Si encuentra una fila con el nombre, devuelve true
         return $stmt->rowCount() > 0;
     }
-
-
 
     static public function mostrar($tabla, $id)
     {
@@ -157,6 +153,25 @@ class productosModelo
         } catch (Exception $e) {
             // Capturamos y retornamos un mensaje de error
             return $e->getMessage();
+        }
+    }
+
+    static public function buscar($query)
+    {
+        try {
+            // Preparar la consulta SQL
+            $stmt = conexion::conectar()->prepare("SELECT * FROM productos WHERE nombre_producto LIKE :query");
+            $searchTerm = "%$query%";
+            $stmt->bindParam(':query', $searchTerm);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Devolver los resultados
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Manejo de errores: devuelve el error como un array
+            return ["error" => $e->getMessage()];
         }
     }
 }

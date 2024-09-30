@@ -211,7 +211,7 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     /* Número de líneas a mostrar */
     line-height: 1.5;
     /* Ajusta la altura de línea según tus necesidades */
@@ -253,6 +253,7 @@ main {
 
 .card-horizontal img {
     width: 40%;
+    height: 130px !important;
     /* Ajusta el ancho de la imagen */
     object-fit: cover;
     /* Asegura que la imagen se ajuste correctamente */

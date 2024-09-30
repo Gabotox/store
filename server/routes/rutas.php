@@ -87,7 +87,7 @@ if (count(array_filter($array_rutas)) == 1) {
                 // Manejo de las peticiones para productos
                 switch ($_SERVER['REQUEST_METHOD']) {
                     case 'GET':
-                        // Llama al método para listar todos los productos
+                        // Llamar al método para listar todos los productos
                         $productos = new productosControlador();
                         $productos->inicio(null);
                         break;

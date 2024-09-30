@@ -72,7 +72,6 @@ class productosControlador
         }
     }
 
-
     public function registrar($datos)
     {
         date_default_timezone_set('America/Bogota');
@@ -657,6 +656,26 @@ class productosControlador
             ];
             http_response_code(401);
             echo json_encode(["Respuesta" => $errores]);
+        }
+    }
+
+
+    public function buscar($query)
+    {
+        // Asegúrate de limpiar el input para evitar inyecciones SQL
+        $query = miModelo::limpiar($query);
+
+        // Suponiendo que tienes un modelo que interactúa con la base de datos
+        $resultado = productosModelo::buscar($query);
+
+        if (isset($resultado['error'])) {
+            // Imprimir el error en formato JSON
+            echo json_encode(["error" => $resultado['error']]);
+        } elseif ($resultado) {
+            echo json_encode($resultado);
+        } else {
+            // Respuesta si no se encuentran productos
+            echo json_encode(["mensaje" => "No se encontraron productos"]);
         }
     }
 }
