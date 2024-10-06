@@ -1,5 +1,8 @@
 <?php
 
+
+// Aquí va tu lógica para obtener los productos
+
 // Separa la URL en partes usando "/" como delimitador
 $array_rutas = explode("/", trim($_SERVER['REQUEST_URI'], characters: '/'));
 

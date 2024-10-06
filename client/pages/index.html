@@ -72,111 +72,22 @@
 
             <!-- Botones de categorías  -->
             <div class="swiper mySwiper mt-4" id="swiper-botones">
-                <div class="swiper-wrapper">
-                    <button class="swiper-slide">Lorem</button>
-                    <button class="swiper-slide">Lorem</button>
-                    <button class="swiper-slide">Lorem</button>
-                    <button class="swiper-slide">Lorem</button>
-                    <button class="swiper-slide">Lorem</button>
+                <div class="swiper-wrapper" id="botones">
+
                 </div>
             </div>
 
             <!-- Tarjeta de productos -->
-            <div class="swiper mySwiper mt-5" id="swiper-cards">
+            <div class="swiper mySwiper" id="swiper-tarjetas">
                 <div class="swiper-wrapper" id="tar">
-                    function displayProducts(products) {
-                        const swiperWrapper = document.querySelector('#tar');
-                        swiperWrapper.innerHTML = ''; // Limpiar el contenido previo
-                    
-                        products.forEach(product => {
-                            // Crear un contenedor para la tarjeta
-                            const cardElement = document.createElement('div');
-                            cardElement.className = 'swiper-slide card pb-3';
-                    
-                            // Crear la estructura de la tarjeta
-                            const cardHeader = document.createElement('div');
-                            cardHeader.className = 'card-header';
-                    
-                            // Crear el banner (puedes ajustar esto según tus necesidades)
-                            const bannerSpan = document.createElement('span');
-                            bannerSpan.className = 'card-banner';
-                            bannerSpan.textContent = 'Nuevo'; // Cambia esto según el producto
-                    
-                            // Crear el elemento de imagen
-                            const imgElement = document.createElement('img');
-                            imgElement.className = 'card-img-top';
-                            imgElement.alt = 'Imagen del Producto';
-                            imgElement.src = product.imagen_producto ? `../../server/uploads/productos/${product.imagen_producto}` : 'https://via.placeholder.com/400x200';
-                    
-                            // Manejar el error de carga
-                            imgElement.onerror = function() {
-                                imgElement.src = 'https://via.placeholder.com/400x200';
-                            };
-                    
-                            // Agregar el banner y la imagen al header
-                            cardHeader.appendChild(bannerSpan);
-                            cardHeader.appendChild(imgElement);
-                    
-                            // Crear el cuerpo de la tarjeta
-                            const cardBody = document.createElement('div');
-                            cardBody.className = 'card-body';
-                    
-                            // Crear el título del producto
-                            const titleElement = document.createElement('h5');
-                            titleElement.className = 'card-title';
-                            titleElement.textContent = product.nombre_producto;
-                    
-                            // Crear la descripción del producto
-                            const descElement = document.createElement('p');
-                            descElement.className = 'card-text';
-                            descElement.textContent = product.descripcion_producto;
-                    
-                            // Crear los elementos de precios
-                            const priceNew = document.createElement('span');
-                            priceNew.className = 'price-new';
-                            priceNew.textContent = `$${product.precio_producto}`;
-                    
-                            const priceOld = document.createElement('span');
-                            priceOld.className = 'price-old';
-                            priceOld.textContent = `$${product.precio_anterior || '0.00'}`; // Cambia esto si no tienes el precio anterior
-                    
-                            // Crear el botón de agregar al carrito
-                            const addButton = document.createElement('a');
-                            addButton.href = '#';
-                            addButton.className = 'btn btn-add-to-cart py-2 mt-3 d-flex align-items-center gap-3';
-                            addButton.style.width = 'max-content';
-                            addButton.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Agregar';
-                    
-                            // Agregar elementos al cuerpo de la tarjeta
-                            cardBody.appendChild(titleElement);
-                            cardBody.appendChild(descElement);
-                            cardBody.appendChild(document.createElement('div').append(priceNew, priceOld)); // Puedes usar un div contenedor aquí
-                            cardBody.appendChild(addButton);
-                    
-                            // Agregar el header y el cuerpo a la tarjeta
-                            cardElement.appendChild(cardHeader);
-                            cardElement.appendChild(cardBody);
-                    
-                            // Insertar la tarjeta en el DOM
-                            swiperWrapper.appendChild(cardElement);
-                        });
-                    }
-                    
+
                 </div>
             </div>
 
 
-            <div class="tarjetas-categorias mt-5">
+            <div class="tarjetas-categorias mt-5" id="categorias-container">
                 <!-- Tarjetas por categorías -->
-                
-               
-                <h3 class="mb-3 mt-5">Categoria</h3>
-                <div class="swiper mySwiper" id="swiper-cards-categoria">
-                    <div class="swiper-wrapper" id="carra">
-
-                    </div>
-                </div>
-
+            </div>
 
             </div>
         </section>
@@ -191,8 +102,9 @@
     </footer>
 
     <!-- Swiper JS -->
-    <script src="../assets/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../assets/js/scripts.js"></script>
+
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/main.js"></script>

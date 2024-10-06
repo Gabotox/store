@@ -139,18 +139,23 @@ main {
 
 /* Personalización de la paginación */
 #swiper-banner .swiper-pagination-bullet {
-    background-color: #888; /* Color de los puntos inactivos */
-    border-radius: .4rem; /* Hace los bullets redondos */
-    margin: 0 0.3rem; /* Espacio entre bullets */
-    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    background-color: #888;
+    /* Color de los puntos inactivos */
+    border-radius: .4rem;
+    /* Hace los bullets redondos */
+    margin: 0 0.3rem;
+    /* Espacio entre bullets */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Transiciones suaves */
 }
 
 /* Estilo para el bullet activo */
-/* Estilo para el bullet activo */
 #swiper-banner .swiper-pagination-bullet-active {
-    background-color: var(--color_rosa); /* Color del bullet activo */
+    background-color: var(--color_rosa);
+    /* Color del bullet activo */
     width: 1.5rem;
-    transform: scale(1.2); /* Aumenta el tamaño del bullet activo */
+    transform: scale(1.2);
+    /* Aumenta el tamaño del bullet activo */
 }
 
 
@@ -165,9 +170,10 @@ main {
     border: none;
     border-radius: 8px;
     background: var(--color_gris);
+    color: var(--color_negro);
 }
 
-#swiper-botones button:first-child {
+#swiper-botones button.selected {
     background: var(--color_rosa);
     color: var(--color_blanco);
 }
@@ -176,9 +182,7 @@ main {
 /* Slider de tarjetas de productos TODOS */
 .card {
     border: none;
-    /* Quita el borde de la card */
     box-shadow: none;
-    /* Quita la sombra por defecto */
     position: relative;
     border-radius: 1rem;
     background: var(--color_gris);
@@ -245,18 +249,15 @@ main {
     display: flex !important;
     flex-direction: row;
     border: none;
-    /* Elimina el borde */
     box-shadow: none;
-    /* Elimina la sombra por defecto */
     width: 450px !important;
+    height: 120px !important;
+    overflow: hidden !important;
 }
 
 .card-horizontal img {
     width: 40%;
-    height: 130px !important;
-    /* Ajusta el ancho de la imagen */
     object-fit: cover;
-    /* Asegura que la imagen se ajuste correctamente */
 }
 
 .card-body {

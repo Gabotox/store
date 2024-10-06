@@ -9,10 +9,22 @@ class productosModelo
     public static function inicio($tabla, $cantidad, $desde)
     {
         if ($cantidad != null) {
-            $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla LIMIT $desde, $cantidad");
+            $stmt = conexion::conectar()->prepare("
+                SELECT p.*, c.nombre_categoria AS nombre_categoria 
+                FROM $tabla p 
+                JOIN categorias c ON p.categoria_producto = c.id_categoria 
+                LIMIT :desde, :cantidad
+            ");
+            $stmt->bindParam(':desde', $desde, PDO::PARAM_INT);
+            $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
         } else {
-            $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = conexion::conectar()->prepare("
+                SELECT p.*, c.nombre_categoria AS nombre_categoria 
+                FROM $tabla p 
+                JOIN categorias c ON p.categoria_producto = c.id_categoria
+            ");
         }
+
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);

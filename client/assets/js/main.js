@@ -19,7 +19,7 @@ var swiper = new Swiper("#swiper-botones", {
     freeMode: true,
 });
 
-var swiper = new Swiper("#swiper-cards", {
+var swiper = new Swiper("#swiper-tarjetas", {
     slidesPerView: 'auto',
     spaceBetween: 30,
     freeMode: true,
@@ -29,13 +29,4 @@ var swiper = new Swiper("#swiper-cards", {
     }
 });
 
-var swiper = new Swiper("#swiper-cards-categoria", {
-    slidesPerView: 'auto',
-    spaceBetween: 30,
-    freeMode: true,
-    autoplay: {
-        delay: 5000, // Tiempo en milisegundos entre transiciones (3 segundos)
-        disableOnInteraction: false, // No desactivar autoplay al interactuar con el slider
-    }
-});
 
